@@ -140,6 +140,17 @@ $("#mySkills3").click(function (event) {
   );
 });
 
+$("#mySkills4").click(function (event) {
+  // Preventing default action of the event
+  event.preventDefault();
+  $("html, body").animate(
+    {
+      scrollTop: $("#part5").offset().top + 150,
+    },
+    100
+  );
+});
+
 let stockIm = [
   {
     name: "python",

@@ -19,7 +19,7 @@
   background: #53599A;
   position :relative;
   perspective: 1000px;
-
+  padding:10px;
 }
 
 #mySkills4 {
@@ -54,6 +54,7 @@
 }
 
 table {
+  
     border-collapse: collapse;
     margin: 0 40px;
 }
@@ -179,6 +180,10 @@ td {
   margin:0;
 }
 
+#finalText {
+  margin-top: 100px;
+}
+
 #finalText:hover #hover2 {
   transform: rotateX(30deg) translateY(50px);
 }
@@ -190,9 +195,9 @@ td {
 #inv {
   position: absolute;
   font-size: 25px;
-  top:48%;
+  top:53%;
   left:50%;
-  transform : translate(-50%,-48%);
+  transform : translate(-50%,-53%);
   opacity: 0;
   transition: 1s;
 }
