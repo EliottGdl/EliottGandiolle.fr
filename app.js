@@ -34,7 +34,7 @@ let skills = [
   },
 ];
 document.addEventListener("keydown", function (event) {
-  if (event.keyCode == 38 || event.keyCode == 37 || event.keyCode == 39) {
+  if (event.keyCode == 38 || event.keyCode == 37 || event.keyCode == 39 || event.keyCode == 32) {
     event.preventDefault();
   }
 });
@@ -94,16 +94,6 @@ $(document).scroll(function () {
     }
   });
 
-  $("#sub").each(function () {
-    var t = $(this).offset().top - $(window).height();
-    if (y > t && t > 1400) {
-      $(this).fadeIn(400);
-    } else {
-      if (window.innerWidth > 1500) {
-        $(this).fadeOut(400);
-      }
-    }
-  });
 });
 
 $(".apD").click(function (event) {

@@ -8,6 +8,40 @@
   position :relative;
 }
 
+#part5 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  text-align: center;
+  font-size: 50px;
+  min-height: 1100px;
+  background: #53599A;
+  position :relative;
+  perspective: 1000px;
+
+}
+
+#mySkills4 {
+  color:white;
+  text-decoration: none;
+  font-size: 20px;;
+}
+
+#hautGauche {
+  position: absolute;
+  top:0;
+  left:10px;
+  opacity: 0.5;
+  transition:0.3s;
+}
+
+#hautGauche:hover {
+  opacity: 0;
+}
+
+
+
 #part4 {
     display: flex;
   align-items: center;
@@ -130,6 +164,37 @@ td {
     color:black;
     text-decoration: none;
     transition: 0.8s font-size, 0.2s color;
+}
+
+#hover1 {
+  transition: 1s;
+  margin:0;
+}
+
+#finalText:hover #hover1 {
+  transform: rotateX(-30deg) translateY(-50px);
+}
+#hover2 {
+  transition: 1s;
+  margin:0;
+}
+
+#finalText:hover #hover2 {
+  transform: rotateX(30deg) translateY(50px);
+}
+
+#finalText:hover #inv {
+  opacity: 1;
+}
+
+#inv {
+  position: absolute;
+  font-size: 25px;
+  top:48%;
+  left:50%;
+  transform : translate(-50%,-48%);
+  opacity: 0;
+  transition: 1s;
 }
 
 .github {
