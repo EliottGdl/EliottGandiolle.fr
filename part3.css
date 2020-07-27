@@ -1,0 +1,148 @@
+#part3 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  min-height: 1100px;
+  background: black;
+  position :relative;
+}
+
+#part4 {
+    display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  min-height: 1100px;
+  background: #BEEF9E;
+  position :relative;
+    
+}
+
+table {
+    border-collapse: collapse;
+    margin: 0 40px;
+}
+table, td,th {
+    border: 1px solid black;
+}
+
+th {
+    padding : 10px 0;
+}
+
+td {
+    max-width: 300px;
+    padding : 20px;
+    text-align: center;
+
+}
+
+.pRel {
+    position: relative;
+
+}
+
+#mySkills3 {
+  text-decoration: none;
+   color: grey;
+  font-size: 23px;
+  background-image: none;
+  display: inline-block;
+  position: relative;
+  -webkit-text-fill-color: grey;
+}
+
+#mySkills3:hover {
+    -webkit-text-fill-color: white;
+    color: white;
+
+}
+
+#text3 {
+    font-size: 30px;
+    width: 600px;
+    margin-right : 200px;
+}
+
+#subContainer {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#arrows {
+    color:white;
+    animation : pulse 3s infinite ease-in-out;
+}
+
+@keyframes pulse {
+    0% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+
+#mySkills2 {
+  text-decoration: none;
+  color: white;
+  display: inline-block;
+  position: relative;
+}
+
+.rainbow {
+  animation: rainbow 10s infinite;
+  background-image: repeating-linear-gradient(
+    45deg,
+    violet,
+    green,
+    cyan,
+    yellow,
+    orange,
+    red,
+    violet
+  );
+  background-size: 500% 500%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: rainbow 8s ease infinite;
+}
+
+@keyframes rainbow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 25%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.linkTable {
+    color:black;
+    text-decoration: none;
+    transition: 0.8s font-size, 0.2s color;
+}
+
+.github {
+    width:50px;
+    height:50px;
+    transition: 0.6s;
+}
+
+.github:hover {
+    transform : rotate(360deg);
+}
+
+.linkTable:hover {
+    color:white;
+    font-size: 18px;
+}

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+
+<script src="//d3plus.org/js/d3.js"></script>
+<script src="//d3plus.org/js/d3plus.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+<script src="Librairies/p5.min.js"></script>
+    
+<script src="Librairies/addons/p5.dom.min.js"></script>
+<script src="Librairies/addons/p5.sound.min.js"></script>
+<script src="sketch.js"></script>
+<script src="asteroid.js"></script>
+<script src="ship.js"></script>
+<script src="laser.js"></script>
+
+<head>
+  <title>Eliott Gandiolle</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+  <link href="next.css" rel="stylesheet" type="text/css" />
+  <link href="part3.css" rel="stylesheet" type="text/css" />
+
+  <link rel="icon" href="./assets/icone.ico">
+
+  <link
+    href="https://fonts.googleapis.com/css?family=Roboto"
+    rel="stylesheet"
+    type="text/css"
+  />
+</head>
+<body>
+  <div id="page">
+  <div class="title" id="titl">
+    <h1>Eliott Gandiolle</h1>
+    <svg
+      id="logo"
+      width="1463"
+      height="122"
+      viewBox="0 0 1463 122"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M76.0584 108.399V119.006H2V2.99438H73.8142V13.6011H13.0714V54.868H67.2312V65.309H13.0714V108.399H76.0584Z"
+        stroke="black"
+        stroke-width="4"
+        mask="url(#path-1-outside-1)"
+      />
+      <path
+        d="M102.083 2.99438H113.154V108.399H171.802V119.006H102.083V2.99438Z"
+        stroke="black"
+        stroke-width="4"
+        mask="url(#path-1-outside-1)"
+      />
+      <path
+        d="M190.185 2.99438H201.256V119.006H190.185V2.99438Z"
+        stroke="black"
+        stroke-width="4"
+        mask="url(#path-1-outside-1)"
+      />
+      <path
+        d="M281.113 120C270.74 120 261.315 117.459 252.836 112.376C244.458 107.184 237.875 100.112 233.088 91.1629C228.4 82.2135 226.056 72.1592 226.056 61C226.056 49.8408 228.4 39.7865 233.088 30.8371C237.875 21.8876 244.458 14.8717 252.836 9.78932C261.315 4.59644 270.74 2 281.113 2C291.486 2 300.812 4.5412 309.091 9.6236C317.469 14.706 324.052 21.7772 328.84 30.8371C333.627 39.7865 336.021 49.8408 336.021 61C336.021 72.1592 333.627 82.2687 328.84 91.3287C324.052 100.278 317.469 107.294 309.091 112.376C300.812 117.459 291.486 120 281.113 120ZM281.113 109.062C289.392 109.062 296.873 107.018 303.555 102.93C310.238 98.7313 315.474 92.986 319.265 85.6938C323.055 78.2912 324.95 70.0599 324.95 61C324.95 51.9401 323.055 43.764 319.265 36.4719C315.474 29.0693 310.238 23.324 303.555 19.236C296.873 15.0375 289.392 12.9382 281.113 12.9382C272.835 12.9382 265.304 15.0375 258.522 19.236C251.839 23.324 246.553 29.0693 242.663 36.4719C238.873 43.764 236.978 51.9401 236.978 61C236.978 70.0599 238.873 78.2912 242.663 85.6938C246.553 92.986 251.839 98.7313 258.522 102.93C265.304 107.018 272.835 109.062 281.113 109.062Z"
+        stroke="black"
+        stroke-width="4"
+        mask="url(#path-1-outside-1)"
+      />
+      <path
+        d="M379.723 13.6011H342.919V2.99438H427.599V13.6011H390.795V119.006H379.723V13.6011Z"
+        stroke="black"
+        stroke-width="4"
+        mask="url(#path-1-outside-1)"
+      />
+      <path
+        d="M467.095 13.6011H430.29V2.99438H514.971V13.6011H478.166V119.006H467.095V13.6011Z"
+        stroke="black"
+        stroke-width="4"
+        mask="url(#path-1-outside-1)"
+      />
+      <path
+        d="M645.574 61H656.196V105.25C651.309 110.001 645.524 113.647 638.841 116.188C632.158 118.729 625.127 120 617.746 120C607.273 120 597.847 117.459 589.469 112.376C581.091 107.294 574.508 100.278 569.72 91.3287C564.932 82.2687 562.539 72.1592 562.539 61C562.539 49.8408 564.932 39.7865 569.72 30.8371C574.508 21.7772 581.091 14.706 589.469 9.6236C597.847 4.5412 607.323 2 617.895 2C625.875 2 633.206 3.43633 639.888 6.30899C646.571 9.07116 652.207 13.2144 656.795 18.7388L649.912 26.5281C641.634 17.4682 631.111 12.9382 618.344 12.9382C609.866 12.9382 602.186 15.0375 595.304 19.236C588.521 23.324 583.185 29.0693 579.295 36.4719C575.405 43.764 573.46 51.9401 573.46 61C573.46 70.0599 575.405 78.236 579.295 85.5281C583.185 92.8202 588.521 98.5655 595.304 102.764C602.086 106.963 609.717 109.062 618.195 109.062C628.967 109.062 638.093 106.079 645.574 100.112V61Z"
+        stroke="black"
+        stroke-width="4"
+        mask="url(#path-1-outside-1)"
+      />
+      <path
+        d="M753.211 88.014H694.862L682.294 119.006H670.774L718.65 2.99438H729.572L777.448 119.006H765.778L753.211 88.014ZM749.171 78.0702L724.036 15.7556L698.901 78.0702H749.171Z"
+        stroke="black"
+        stroke-width="4"
+        mask="url(#path-1-outside-1)"
+      />
+      <path
+        d="M882.296 2.99438V119.006H873.17L805.844 24.8708V119.006H794.773V2.99438H803.899L871.375 97.1292V2.99438H882.296Z"
+        stroke="black"
+        stroke-width="4"
+        mask="url(#path-1-outside-1)"
+      />
+      <path
+        d="M916.479 2.99438H959.119C970.19 2.99438 979.965 5.48034 988.443 10.4522C996.921 15.3137 1003.5 22.1639 1008.19 31.0028C1012.88 39.7313 1015.22 49.7303 1015.22 61C1015.22 72.2697 1012.88 82.324 1008.19 91.1629C1003.5 99.8914 996.921 106.742 988.443 111.713C979.965 116.575 970.19 119.006 959.119 119.006H916.479V2.99438ZM958.521 108.399C967.697 108.399 975.726 106.41 982.608 102.433C989.49 98.3446 994.827 92.765 998.617 85.6938C1002.41 78.5122 1004.3 70.2809 1004.3 61C1004.3 51.7191 1002.41 43.5431 998.617 36.4719C994.827 29.2903 989.49 23.7107 982.608 19.7331C975.726 15.6451 967.697 13.6011 958.521 13.6011H927.551V108.399H958.521Z"
+        stroke="black"
+        stroke-width="4"
+        mask="url(#path-1-outside-1)"
+      />
+      <path
+        d="M1040.09 2.99438H1051.16V119.006H1040.09V2.99438Z"
+        stroke="black"
+        stroke-width="4"
+        mask="url(#path-1-outside-1)"
+      />
+      <path
+        d="M1131.01 120C1120.64 120 1111.21 117.459 1102.74 112.376C1094.36 107.184 1087.78 100.112 1082.99 91.1629C1078.3 82.2135 1075.96 72.1592 1075.96 61C1075.96 49.8408 1078.3 39.7865 1082.99 30.8371C1087.78 21.8876 1094.36 14.8717 1102.74 9.78932C1111.21 4.59644 1120.64 2 1131.01 2C1141.39 2 1150.71 4.5412 1158.99 9.6236C1167.37 14.706 1173.95 21.7772 1178.74 30.8371C1183.53 39.7865 1185.92 49.8408 1185.92 61C1185.92 72.1592 1183.53 82.2687 1178.74 91.3287C1173.95 100.278 1167.37 107.294 1158.99 112.376C1150.71 117.459 1141.39 120 1131.01 120ZM1131.01 109.062C1139.29 109.062 1146.77 107.018 1153.46 102.93C1160.14 98.7313 1165.37 92.986 1169.16 85.6938C1172.96 78.2912 1174.85 70.0599 1174.85 61C1174.85 51.9401 1172.96 43.764 1169.16 36.4719C1165.37 29.0693 1160.14 23.324 1153.46 19.236C1146.77 15.0375 1139.29 12.9382 1131.01 12.9382C1122.74 12.9382 1115.2 15.0375 1108.42 19.236C1101.74 23.324 1096.45 29.0693 1092.56 36.4719C1088.77 43.764 1086.88 51.9401 1086.88 61C1086.88 70.0599 1088.77 78.2912 1092.56 85.6938C1096.45 92.986 1101.74 98.7313 1108.42 102.93C1115.2 107.018 1122.74 109.062 1131.01 109.062Z"
+        stroke="black"
+        stroke-width="4"
+        mask="url(#path-1-outside-1)"
+      />
+      <path
+        d="M1210.74 2.99438H1221.81V108.399H1280.46V119.006H1210.74V2.99438Z"
+        stroke="black"
+        stroke-width="4"
+        mask="url(#path-1-outside-1)"
+      />
+      <path
+        d="M1298.84 2.99438H1309.91V108.399H1368.56V119.006H1298.84V2.99438Z"
+        stroke="black"
+        stroke-width="4"
+        mask="url(#path-1-outside-1)"
+      />
+      <path
+        d="M1461 108.399V119.006H1386.94V2.99438H1458.76V13.6011H1398.01V54.868H1452.17V65.309H1398.01V108.399H1461Z"
+        stroke="black"
+        stroke-width="4"
+        mask="url(#path-1-outside-1)"
+      />
+    </svg>
+  </div>
+
+  <a href="javascript:;" id="show" class="apD"> Show the website </a>
+
+  <div id ="part1">
+    <div id="photo">
+    <img id="img1"  src="./assets/moi.jpg" alt="EliottGandiolle">
+    <p id='desc'> Bali / 2017 </p>
+  </div>
+
+  <p id="text1">
+      Hello ! My name is Eliott Gandiolle. I'm a French computer science student who likes to code some websites / games or other apps during his free time. 
+      I've been coding for several years now and I've had time to learn a lot about this field. <a id="mySkills" href="javascript:;" class="mySkills"> See my skills </a>
+    </p>
+  </div>
+  <div id ="part2">
+    <div id = "sub">    
+    <div id="bars">
+      <p id="text2">
+        Here are my skills, these are evaluated from a null 
+        level to a very high level of mastery. However, 
+        what most represents my abilities are </br> <a href="javascript:;" id="mySkills2" class="mySkills"> the projects 
+        I made. </a>
+      </p>
+    </div>
+  </div>
+  <p id="banner"> Other things I know : Java for Android ; React Native ; Unity ; Express ; Processing (p5) ; C ; C# ; Network ; Cordova ; SQL ; Godot Engine ; Shopify </p>
+  </div>
+  <div id="part3">
+    <p id="text3" class="rainbow">
+      Before... take a little break. Here is a little game I made thanks to the tutorial of the youtube channel "The Coding Train", enjoy !    </br>     <a href="javascript:;" id="mySkills3" class="mySkills">Go next... </a>
+    </p>
+    <div id="subContainer">
+      
+    <div id="container3">
+    </div>
+    <p id="arrows" class="rainbow"> Use arrows to move and space to shot </p>
+  </div>
+
+  </div>
+  <div id="part4">
+    <table>
+      <tr>
+          <th id="name">Project(s) </th>
+          <th>GitHub link</th>
+          <th>Complete</th>
+          <th>Available online</th>
+          <th>Comments</th>
+          <th>Use</th>
+          <th>Year</th>
+
+      </tr>
+   
+      <tr>
+          <td>My League Friend (a website that permites to follow your friends progress on the League Of Legends game)</td>
+          <td> <a href=""> <img src="./assets/github.png" alt="github link" class="github"> </a></td>
+          <td> 100% </td>
+          <td> <p class="pRel"><a class="linkTable mySkills" href="http://www.myleaguefriend.com"> http://www.myleaguefriend.com </a> </p></td>
+          <td> I'm waiting the Riot games authorization to fully deploy it </td>
+          <td> React </td>
+          <td> 2020 </td>
+
+      </tr>
+      <tr>
+        <td>Spotify Analysis (a website that parses your spotify account and shows you the results)</td>
+        <td> <a href="https://github.com/EliottGdl/React/tree/master/LearnReact_6_Spotify2ndTry/spotify-web"> <img src="./assets/github.png" alt="github link" class="github"> </a></td>
+        <td> 90% </td>
+          <td> <p class="pRel"><a class="linkTable mySkills" href="https://spotify.eliottgandiolle.fr"> https://spotify.eliottgandiolle.fr </a> </p></td>
+          <td> Some functionalities  are not totally implemented (and its not 100% responsive) </td>
+          <td> React </td>
+          <td> 2020 </td>
+      </tr>
+      <tr>
+        <td>Bomberman (a little game made with a friend)</td>
+        <td> <a href="https://github.com/EliottGdl/Javascript/tree/master/Bomberman"> <img src="./assets/github.png" alt="github link" class="github"> </a></td>
+        <td> 90% </td>
+          <td> <p class="pRel"><a class="linkTable mySkills" href="https://bomberman.eliottgandiolle.fr"> https://bomberman.eliottgandiolle.fr </a> </p></td>
+          <td> It happens to exit the map but... you can still play it with your friends ! </td>
+          <td> P5.js </td>
+          <td> 2018 </td>
+      </tr>
+      <tr>
+        <td>EliottGandiolle.fr (I bet you've heard of it before.</td>
+        <td> <a href=""> <img src="./assets/github.png" alt="github link" class="github"> </a></td>
+        <td> 100% </td>
+          <td> Do you really need it ? </td>
+          <td> /* I had a lot of fun doing it */ </td>
+          <td> Js </td>
+          <td> 2020 </td>
+      </tr>
+      <tr>
+        <td> MyWishList (A website where you can create wishlists for some events)</td>
+        <td> <a href="https://github.com/EliottGdl/PHP/tree/master/MyWishList%20(site%20de%20listes%20de%20voeux)"> <img src="./assets/github.png" alt="github link" class="github"> </a></td>
+        <td> 100% </td>
+          <td> Not available anymore </td>
+          <td> It is a nice project I did with some friends during for school </td>
+          <td> PHP </td>
+          <td> 2019 </td>
+      </tr>
+      <tr>
+        <td> BeatMaker (An application where you can create your own beat or choose to create your playlist)</td>
+        <td> <a href="https://github.com/EliottGdl/Python/tree/master/Beatmaker%20and%20Playlist"> <img src="./assets/github.png" alt="github link" class="github"> </a></td>
+        <td> 95% </td>
+          <td> X </td>
+          <td> I did it with 2 friends in highschool but it was our first IT project so... it isn't my best project in terms of code but I'm still proud of it  </td>
+          <td> Python </td>
+          <td> 2018 </td>
+      </tr>
+   </table>
+   <p class="pRel">This table does not represent all my projects, however most of them are there or are on <a style="text-decoration:none;font-weight: bold; color:black" href="https://www.github.com/eliottgdl"> my github.</a></p>
+
+  </div>
+
+</div>
+<script src="app.js"></script>
+
+
+
+</body>
