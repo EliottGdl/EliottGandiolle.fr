@@ -6,6 +6,7 @@
 let stock = [];
 let id = 0;
 let idIm = 0;
+let widthh = $(window).width() - 100;
 
 let skills = [
   {
@@ -34,14 +35,34 @@ let skills = [
   },
 ];
 document.addEventListener("keydown", function (event) {
-  if (event.keyCode == 38 || event.keyCode == 37 || event.keyCode == 39 || event.keyCode == 32) {
+  if (
+    event.keyCode == 38 ||
+    event.keyCode == 37 ||
+    event.keyCode == 39 ||
+    event.keyCode == 32
+  ) {
     event.preventDefault();
   }
 });
 
+function getRandomInt(max) {
+  return Math.floor(Math.random() * Math.floor(max));
+}
+
+infiniteFalls = () => {
+  setTimeout(() => {
+    let x = getRandomInt(widthh) + 100;
+    spawnApic(x, $("#part2").offset().top);
+    infiniteFalls();
+  }, 1200);
+};
+infiniteFalls();
+setTimeout(() => {
+  infiniteFalls();
+}, 750);
+
 for (let i = 0; i < skills.length; i++) {
   let skill = skills[i];
-  console.log(skill);
   $("#bars").append(`
     
             <div class = "bar">
@@ -54,15 +75,18 @@ for (let i = 0; i < skills.length; i++) {
     `);
 }
 
-$("#part2").click(function (event) {
-  let x = event.pageX;
-  let y = event.pageY;
+spawnApic = (x, y) => {
+  console.log("x : " + x + " y : " + y);
 
   $("#page").append(`
         
             <img src="./assets/${
               stockIm[idIm].name
-            }.png" id="${id}" class="fall" style="width:${stockIm[idIm].x}px;height:${stockIm[idIm].y}px;position:absolute;top:${y}px;left:${x - 100}px;" />
+            }.png" id="${id}" class="fall" style="width:${
+    stockIm[idIm].x
+  }px;height:${stockIm[idIm].y}px;position:absolute;top:${y}px;left:${
+    x - 100
+  }px;" />
 
         
         `);
@@ -74,6 +98,13 @@ $("#part2").click(function (event) {
   }, 1800);
   id++;
   idIm = idIm + 1 >= stockIm.length ? 0 : idIm + 1;
+};
+
+$("#part2").click(function (event) {
+  let x = event.pageX;
+  let y = event.pageY;
+
+  spawnApic(x, y);
 
   //console.log(x +  " hey "+y)
 });
@@ -93,15 +124,18 @@ $(document).scroll(function () {
       $("#img1").fadeOut(400);
     }
   });
-
 });
 
 $(".apD").click(function (event) {
   // Preventing default action of the event
+  let offset = 100;
+  if (widthh < 992) {
+    offset += 100;
+  }
   event.preventDefault();
   $("html, body").animate(
     {
-      scrollTop: $("#part1").offset().top + 100,
+      scrollTop: $("#part1").offset().top + offset,
     },
     100
   );
@@ -109,10 +143,14 @@ $(".apD").click(function (event) {
 
 $("#mySkills").click(function (event) {
   // Preventing default action of the event
+  let offset = 150;
+  if (widthh < 992) {
+    offset += 150;
+  }
   event.preventDefault();
   $("html, body").animate(
     {
-      scrollTop: $("#part2").offset().top + 150,
+      scrollTop: $("#part2").offset().top + offset,
     },
     100
   );
@@ -120,10 +158,14 @@ $("#mySkills").click(function (event) {
 
 $("#mySkills2").click(function (event) {
   // Preventing default action of the event
+  let offset = 100;
+  if (widthh < 992) {
+    offset += 100;
+  }
   event.preventDefault();
   $("html, body").animate(
     {
-      scrollTop: $("#part3").offset().top + 100,
+      scrollTop: $("#part3").offset().top + offset,
     },
     100
   );
@@ -131,10 +173,11 @@ $("#mySkills2").click(function (event) {
 
 $("#mySkills3").click(function (event) {
   // Preventing default action of the event
+  let offset = 100;
   event.preventDefault();
   $("html, body").animate(
     {
-      scrollTop: $("#part4").offset().top + 100,
+      scrollTop: $("#part4").offset().top + offset,
     },
     100
   );
@@ -142,10 +185,14 @@ $("#mySkills3").click(function (event) {
 
 $("#mySkills4").click(function (event) {
   // Preventing default action of the event
+  let offset = 150;
+  if (widthh < 992) {
+    offset += 150;
+  }
   event.preventDefault();
   $("html, body").animate(
     {
-      scrollTop: $("#part5").offset().top + 150,
+      scrollTop: $("#part5").offset().top + offset,
     },
     100
   );
@@ -154,6 +201,11 @@ $("#mySkills4").click(function (event) {
 let stockIm = [
   {
     name: "python",
+    x: 100,
+    y: 100,
+  },
+  {
+    name: "firebase",
     x: 100,
     y: 100,
   },
@@ -170,6 +222,11 @@ let stockIm = [
   {
     name: "js",
     x: 80,
+    y: 100,
+  },
+  {
+    name: "node",
+    x: 100,
     y: 100,
   },
   {
